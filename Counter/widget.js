@@ -89,6 +89,10 @@ window.addEventListener('onWidgetLoad', function (obj) {
     counterSetCommand = fieldData.counterSetCommand;
     initialCounterValue = fieldData.initialCount;
 
+    if(hideAnimation === "none") {
+    	hidden = false; 
+    }
+
     setCounter(initialCounterValue);
     setCounterText(initialCounterValue);
     setAnimationStyle(hideAnimation);
@@ -108,11 +112,14 @@ window.addEventListener('onWidgetLoad', function (obj) {
 });
 
 function showCounterIfHidden(counter) {
+  if (!hidden && counter !== undefined && !isNaN(counter)) {
+    setCounterText(counter);
+  }
+  
   if(hideAnimation !== "none" && hidden) {
-    console.log("showCounterIfHidden", anime)
     let timeline = anime.timeline({
       easing: 'easeOutExpo',
-      duration: 2000
+      duration: 1000
     });
 
     //after slide out, the new value is appended above the current value
@@ -137,11 +144,6 @@ function showCounterIfHidden(counter) {
         hidden = true;
       }
     });
-  }
-  else if (hideAnimation === "none") {
-    if (counter !== undefined && !isNaN(counter)) {
-      setCounterText(counter);
-    }
   }
 }
 
