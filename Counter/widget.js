@@ -109,10 +109,7 @@ function showCounterIfHidden(counter) {
   }
   
   if(hideAnimation !== "none" && hidden) {
-    let timeline = anime.timeline({
-      easing: 'easeOutExpo',
-      duration: 1000
-    });
+    let timeline = anime.timeline({});
 
     //after slide out, the new value is appended above the current value
     //the new value margin moves the current value down
@@ -121,6 +118,8 @@ function showCounterIfHidden(counter) {
     timeline.add({
       ...originAnimationStyle,
       targets: '.counter-container',
+      easing: 'easeOutExpo',
+      duration: 1000,
       complete: function(anim) {
         //do it here
         hidden = false;
@@ -132,6 +131,8 @@ function showCounterIfHidden(counter) {
       ...destinationAnimationStyle,
       targets: '.counter-container',
       delay: hideDelay,
+      easing: 'easeInExpo',
+      duration: 1000,
       complete: function(anim) {
         hidden = true;
       }
