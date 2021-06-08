@@ -1,0 +1,24 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
+@import url('https://fonts.googleapis.com/css?family={{fontName}}');
+
+* {
+    font-family: '{{fontName}}', sans-serif;
+    color: {{fontColor}};
+    font-size: {{fontSize}}px;
+    font-weight: {{fontWeight}};
+    text-shadow:{textShadow};
+  	text-align: left;
+  	scroll-behavior: smooth;
+}
+
+.main-container{
+    overflow: hidden;
+}
+
+.counter-text {
+    float: left; 
+}
+
+.counter {
+    float: left; 
+}
