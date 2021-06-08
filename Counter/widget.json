@@ -108,11 +108,5 @@
       "label": "Reset counter command",
       "value": "!counterreset",
       "group": "Customization"
-    },
-    "counterSetCommand": {
-      "type": "text",
-      "label": "Set counter command",
-      "value": "!counterset",
-      "group": "Customization"
     }
   }

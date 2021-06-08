@@ -6,7 +6,7 @@ let values = {
   counter, 
   previousCounter
 };
-let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, counterSetCommand, initialCounterValue;
+let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, initialCounterValue;
 let originAnimationStyle,destinationAnimationStyle;
 
 window.addEventListener('onEventReceived', function (obj) {
@@ -58,13 +58,6 @@ window.addEventListener('onEventReceived', function (obj) {
      showCounterIfHidden(counter);
     //  setCounterText(counter);
    }
-  
-  else if(command.startsWith(counterSetCommand) && (badges.includes("broadcaster") || badges.includes("moderator"))) {
-     console.log("Setting counter to " + message.split(" ")[1]);
-     if( !isNaN(message.split(" ")[1])) counter = parseInt(message.split(" ")[1]);
-     showCounterIfHidden(counter);
-    //  setCounterText(counter);
-   }
 });
 
 function setCounter(newCounter) {
@@ -86,7 +79,6 @@ window.addEventListener('onWidgetLoad', function (obj) {
     counterAddCommand = fieldData.counterAddCommand;
     counterSubtractCommand = fieldData.counterSubtractCommand;
     counterResetCommand = fieldData.counterResetCommand;
-    counterSetCommand = fieldData.counterSetCommand;
     initialCounterValue = fieldData.initialCount;
 
     if(hideAnimation === "none") {
