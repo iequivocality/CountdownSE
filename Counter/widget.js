@@ -120,8 +120,8 @@ function showCounterIfHidden(counter) {
     //current value is deleted and new value becomes current value
 
     timeline.add({
+      ...originAnimationStyle,
       targets: '.counter-container',
-      marginLeft: originAnimationStyle.marginLeft + "px",
       complete: function(anim) {
         //do it here
         hidden = false;
@@ -130,8 +130,8 @@ function showCounterIfHidden(counter) {
         }
       }
     }).add({
+      ...destinationAnimationStyle,
       targets: '.counter-container',
-      marginLeft: destinationAnimationStyle.marginLeft + "px",
       delay: hideDelay,
       complete: function(anim) {
         hidden = true;
@@ -149,20 +149,20 @@ function setAnimationStyle(hideAnimation) {
   if(hideAnimation === "none") return;
   
   if(hideAnimation === "slideRight") {
-    originAnimationStyle = {marginLeft:'0'};
-  	destinationAnimationStyle = {marginLeft:'500'};
+    originAnimationStyle = {marginLeft:'0px'};
+  	destinationAnimationStyle = {marginLeft:'500px'};
   }
   else if(hideAnimation === "slideLeft") {
-    originAnimationStyle = {marginLeft:'0'};
-  	destinationAnimationStyle = {marginLeft:'-500'};
+    originAnimationStyle = {marginLeft:'0px'};
+  	destinationAnimationStyle = {marginLeft:'-500px'};
   }
   else if(hideAnimation === "slideDown") {
-    originAnimationStyle = {marginTop:'0'};
-  	destinationAnimationStyle = {marginTop:'500'};
+    originAnimationStyle = {marginTop:'0px'};
+  	destinationAnimationStyle = {marginTop:'500px'};
   }
   else if(hideAnimation === "slideUp") {
-    originAnimationStyle = {marginTop:'0'};
-  	destinationAnimationStyle = {marginTop:'-500'};
+    originAnimationStyle = {marginTop:'0px'};
+  	destinationAnimationStyle = {marginTop:'-500px'};
   }
 }
 
