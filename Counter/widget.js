@@ -20,7 +20,7 @@ window.addEventListener('onEventReceived', function (obj) {
     console.log(badges);
   
     if(command === counterCommand) {
-      if (value && (badges.includes("broadcaster") || badges.includes("moderator"))) {
+      if (value !== undefined && (badges.includes("broadcaster") || badges.includes("moderator"))) {
         let parsed = 0;
         try {
           parsed = parseInt(value);
