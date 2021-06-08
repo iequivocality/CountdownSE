@@ -2,7 +2,7 @@
 
 Streamelements Widgets for personal use of kemaoaoao and ambidere's streams
 
-https://www.twitch.tv/kemaoaoao
-https://www.twitch.tv/ambidere
+- Kemaoaoao (https://www.twitch.tv/kemaoaoao)
+- Ambidere (https://www.twitch.tv/ambidere)
 
 Free to use.
