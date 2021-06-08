@@ -1,9 +1,27 @@
 {
-    "fontName": {
-      "type": "text",
-      "label": "Font name",
-      "value": "Montserrat",
-      "group": "Typography"
+    "initialCount" : {
+      "type": "number",
+      "label": "Initial counter value",
+      "value": 0,
+      "group": "Customization"
+    },
+    "borderRadius" : {
+      "type": "number",
+      "label": "Border Radius",
+      "value": 10,
+      "group": "UI Customization"
+    },
+    "backgroundColor": {
+      "label": "Background Color",
+      "type": "colorpicker",
+      "value": "rgba(255,255,255,0.75)",
+      "group": "UI Customization"
+    },
+    "fontFamily": {
+      "group": "Typography",
+      "type": "googleFont",
+      "label": "Font family",
+      "value": "Montserrat"
     },
     "fontSize": {
       "type": "number",
@@ -24,6 +42,16 @@
         "900": "Black (900)"
       },
       "group": "Typography"
+    },
+    "labelType": {
+      "type": "dropdown",
+      "label": "Label Type:",
+      "value": "showText",
+      "options": {
+        "showImage": "Image",
+        "showText": "Text Label"
+      },
+      "group": "Customization"
     },
     "fontColor": {
       "type": "colorpicker",
