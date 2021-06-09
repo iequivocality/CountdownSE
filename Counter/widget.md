@@ -9,10 +9,10 @@ The following Twitch chat commands can control the counter. These commands can b
 | Command | Description | Usage |
 | ------ | ------ | ------ |
 | !counter | Twitch chat command for showing counter (if hidden). **Can be used by anyone in chat**. | `!counter` |
+| !counter <number> | Twitch chat command for setting the counter to a specific number. **Can only be used by the broadcaster and mods**. | `!counter <number>` (example: `!counter 15` to set counter to *15*) |
 | !counterup | Twitch chat command for adding 1 to the counter. **Can only be used by the broadcaster and mods**. | `!counterup` |
 | !counterdown | Twitch chat command for subtracting 1 from the counter. **Can only be used by the broadcaster and mods**. | `!counterdown` |
 | !counterreset | Twitch chat command for resetting the counter to 0. **Can only be used by the broadcaster and mods**. | `!counterreset` |
-| !counterset | Twitch chat command for setting the counter to a specific number. **Can only be used by the broadcaster and mods**. | `!counterset <number>` (example: `!counterset 15` to set counter to *15*) |
 
 #### Customizable Settings
 The following can be customized by accessing the widget settings (excluding font settings):
@@ -22,11 +22,10 @@ The following can be customized by accessing the widget settings (excluding font
 | Counter Label | Label for the counter | Counter |
 | Hide animation | Animation style for the counter if not permanently on the overlay (See section on **Hide Animation options**)| None |
 | Hide delay | Delay between the counter showing up and the counter being hidden again (in milliseconds) | 5000 (5 seconds) |
-| Show counter command | Twitch chat command for showing counter (if hidden) | !counter |
+| Show/Set counter command | Twitch chat command for showing counter (if hidden) | !counter |
 | Add counter command | Twitch chat command for adding 1 to the counter | !counterup |
 | Subtract counter command | Twitch chat command for subtracting 1 from the counter | !counterdown |
 | Reset counter command | Twitch chat command for resetting the counter to 0 | !counterreset |
-| Set counter command | Twitch chat command for setting the counter to a specific number | !counterset |
 
 #### Hide Animation options
 | Animation | Description |
