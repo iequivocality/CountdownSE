@@ -66,7 +66,18 @@ function setCounter(newCounter) {
 }
 
 function setCounterText (counter) {
-  document.querySelector('.counter').innerHTML = counter;
+  document.querySelector('.newCounter').innerHTML = counter;
+  let timeline = anime.timeline();
+  
+  timeline.add({
+    targets: '.currentCounter',
+    marginTop: '-65px',
+    easing: 'easeInExpo',
+    complete: function(anim) {
+		document.querySelector('.currentCounter').innerHTML = counter;
+      	let currentCounterElement = document.querySelector('.currentCounter');
+        currentCounterElement.style.marginTop = "0px";
+  }});
 }
 
 window.addEventListener('onWidgetLoad', function (obj) {
