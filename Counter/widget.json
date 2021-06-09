@@ -1,9 +1,27 @@
 {
-    "fontName": {
-      "type": "text",
-      "label": "Font name",
-      "value": "Montserrat",
-      "group": "Typography"
+    "initialCount" : {
+      "type": "number",
+      "label": "Initial counter value",
+      "value": 0,
+      "group": "Customization"
+    },
+    "borderRadius" : {
+      "type": "number",
+      "label": "Border Radius",
+      "value": 10,
+      "group": "UI Customization"
+    },
+    "backgroundColor": {
+      "label": "Background Color",
+      "type": "colorpicker",
+      "value": "rgba(255,255,255,0.75)",
+      "group": "UI Customization"
+    },
+    "fontFamily": {
+      "group": "Typography",
+      "type": "googleFont",
+      "label": "Font family",
+      "value": "Montserrat"
     },
     "fontSize": {
       "type": "number",
@@ -25,6 +43,16 @@
       },
       "group": "Typography"
     },
+    "labelType": {
+      "type": "dropdown",
+      "label": "Label Type",
+      "value": "showText",
+      "options": {
+        "showImage": "Image",
+        "showText": "Text Label"
+      },
+      "group": "Customization"
+    },
     "fontColor": {
       "type": "colorpicker",
       "label": "Font Color",
@@ -35,11 +63,11 @@
       "type": "text",
       "label": "Counter label",
       "value": "Counter",
-      "group": "Customization"
+      "group": "UI Customization"
     },
     "hideAnimation": {
       "type": "dropdown",
-      "label": "Hide animation:",
+      "label": "Hide animation",
       "value": "none",
       "options": {
         "none": "None",
@@ -48,14 +76,19 @@
         "slideUp": "Slide up",
         "slideDown": "Slide down"
       },
-      "group": "Customization"
+      "group": "UI Customization"
+    },
+    "animationDuration": {
+      "type": "number",
+      "label": "Animation duration (in ms)",
+      "value": 1000,
+      "group": "UI Customization"
     },
     "hideDelay": {
       "type": "text",
       "label": "Hide delay (in ms)",
       "value": 5000,
-      "group": "Customization"
-  
+      "group": "UI Customization"
     },
     "counterCommand": {
       "type": "text",
@@ -79,12 +112,6 @@
       "type": "text",
       "label": "Reset counter command",
       "value": "!counterreset",
-      "group": "Customization"
-    },
-    "counterSetCommand": {
-      "type": "text",
-      "label": "Set counter command",
-      "value": "!counterset",
       "group": "Customization"
     }
   }

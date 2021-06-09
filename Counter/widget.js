@@ -1,48 +1,80 @@
 let hideAfter = 60;
 let hidden = true;
 let counter = 0;
-let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, counterSetCommand;
-let originAnimationStyle,destinationAnimationStyle;
+let previousCounter = 0;
+let values = {
+  counter, 
+  previousCounter
+};
+let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, initialCounterValue, animationDuration;
+let originAnimationStyle, destinationAnimationStyle;
 
 window.addEventListener('onEventReceived', function (obj) {
     if (obj.detail.listener !== "message") return;
     let data = obj.detail.event.data;
     let badges = getBadges(data.badges);
-    let message = data.text;
+    let message = data.text.trim().toLowerCase();
+    let splitMessage = message.split(' ');
+    let command = splitMessage[0];
+    let value = splitMessage[1]
     console.log(badges);
   
-    if(message.toLowerCase() === counterCommand) {
-      showCounterIfHidden();
+    if(command === counterCommand) {
+      if (value !== undefined && (badges.includes("broadcaster") || badges.includes("moderator"))) {
+        let parsed = 0;
+        try {
+          parsed = parseInt(value);
+        } catch (err) {
+          parsed = 0;
+        }
+        setCounter(parsed);
+        showCounterIfHidden(counter);
+      }
+      else {
+        showCounterIfHidden();
+      }
     }
   
-   else if(message.toLowerCase() === counterAddCommand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
+   else if(command === counterAddCommand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
      console.log("Adding to counter.");
-     counter+=1;
-     $(".counter").text(counter);
-     showCounterIfHidden();
+     setCounter(counter + 1);
+     showCounterIfHidden(counter);
    }
   
-   else if(message.toLowerCase() === counterSubtractCommmand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
+   else if(command === counterSubtractCommand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
      console.log("Subtracting from counter.");
-     if(counter > 0) counter-=1;
-     $(".counter").text(counter);
-     showCounterIfHidden();
+     if(counter > 0) {
+      setCounter(counter - 1);
+     };
+     showCounterIfHidden(counter);
    }
    
-   else if(message.toLowerCase() === counterResetCommand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
+   else if(command === counterResetCommand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
      console.log("Resetting counter.");
-     counter = 0;
-     $(".counter").text(counter);
-     showCounterIfHidden();
-   }
-  
-  else if(message.toLowerCase().startsWith(counterSetCommand) && (badges.includes("broadcaster") || badges.includes("moderator"))) {
-     console.log("Setting counter to " + message.split(" ")[1]);
-     if( !isNaN(message.split(" ")[1])) counter = parseInt(message.split(" ")[1]);
-     $(".counter").text(counter);
-     showCounterIfHidden();
+     setCounter(0);
+     showCounterIfHidden(counter);
    }
 });
+
+function setCounter(newCounter) {
+  previousCounter = counter;
+  counter = newCounter;
+}
+
+function setCounterText (counter) {
+  document.querySelector('.newCounter').innerHTML = counter;
+  let timeline = anime.timeline();
+  
+  timeline.add({
+    targets: '.currentCounter',
+    marginTop: '-65px',
+    easing: 'easeInExpo',
+    complete: function(anim) {
+      document.querySelector('.currentCounter').innerHTML = counter;
+      let currentCounterElement = document.querySelector('.currentCounter');
+      currentCounterElement.style.marginTop = "0px";
+  }});
+}
 
 window.addEventListener('onWidgetLoad', function (obj) {
     console.log("LOADED WIDGET");
@@ -54,40 +86,86 @@ window.addEventListener('onWidgetLoad', function (obj) {
     counterAddCommand = fieldData.counterAddCommand;
     counterSubtractCommand = fieldData.counterSubtractCommand;
     counterResetCommand = fieldData.counterResetCommand;
-    counterSetCommand = fieldData.counterSetCommand;
-  
+    initialCounterValue = fieldData.initialCount;
+    animationDuration = fieldData.animationDuration;
+
+    if(hideAnimation === "none") {
+    	hidden = false; 
+    }
+
+    setCounter(initialCounterValue);
+    setCounterText(initialCounterValue);
     setAnimationStyle(hideAnimation);
+    let counterContainerElement = document.querySelector('.counter-container');
+    if(hideAnimation === "slideRight") {
+      counterContainerElement.style.marginLeft = "500px";
+    }
+    else if(hideAnimation === "slideLeft") {
+      counterContainerElement.style.marginLeft = "-500px";
+    }
+    else if(hideAnimation === "slideDown") {
+      counterContainerElement.style.marginTop = "500px";
+    }
+    else if(hideAnimation === "slideUp") {
+      counterContainerElement.style.marginTop = "-500px";
+    }
 });
 
-function showCounterIfHidden() {
+function showCounterIfHidden(counter) {
+  if (!hidden && counter !== undefined && !isNaN(counter)) {
+    setCounterText(counter);
+  }
+  
   if(hideAnimation !== "none" && hidden) {
-    $('.main-container').animate(originAnimationStyle, function(){
-      hidden = false;
+    let timeline = anime.timeline({});
+
+    //after slide out, the new value is appended above the current value
+    //the new value margin moves the current value down
+    //current value is deleted and new value becomes current value
+
+    timeline.add({
+      ...originAnimationStyle,
+      targets: '.counter-container',
+      easing: 'easeOutExpo',
+      duration: animationDuration,
+      complete: function(anim) {
+        //do it here
+        hidden = false;
+        if (counter !== undefined && !isNaN(counter)) {
+          setCounterText(counter);
+        }
+      }
+    }).add({
+      ...destinationAnimationStyle,
+      targets: '.counter-container',
+      delay: hideDelay,
+      easing: 'easeInExpo',
+      duration: animationDuration,
+      complete: function(anim) {
+        hidden = true;
+      }
     });
-    $('.main-container').delay(hideDelay).animate(destinationAnimationStyle, function(){
-      hidden = true;
-    });
-  }  
+  }
 }
 
 function setAnimationStyle(hideAnimation) {
   if(hideAnimation === "none") return;
   
   if(hideAnimation === "slideRight") {
-    originAnimationStyle = {marginLeft:'0'};
-  	destinationAnimationStyle = {marginLeft:'500'};
+    originAnimationStyle = {marginLeft:'0px'};
+  	destinationAnimationStyle = {marginLeft:'500px'};
   }
   else if(hideAnimation === "slideLeft") {
-    originAnimationStyle = {marginLeft:'0'};
-  	destinationAnimationStyle = {marginLeft:'-500'};
+    originAnimationStyle = {marginLeft:'0px'};
+  	destinationAnimationStyle = {marginLeft:'-500px'};
   }
   else if(hideAnimation === "slideDown") {
-    originAnimationStyle = {marginTop:'0'};
-  	destinationAnimationStyle = {marginTop:'500'};
+    originAnimationStyle = {marginTop:'0px'};
+  	destinationAnimationStyle = {marginTop:'500px'};
   }
   else if(hideAnimation === "slideUp") {
-    originAnimationStyle = {marginTop:'0'};
-  	destinationAnimationStyle = {marginTop:'-500'};
+    originAnimationStyle = {marginTop:'0px'};
+  	destinationAnimationStyle = {marginTop:'-500px'};
   }
 }
 

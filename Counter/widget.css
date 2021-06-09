@@ -1,8 +1,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
-@import url('https://fonts.googleapis.com/css?family={{fontName}}');
 
 * {
-    font-family: '{{fontName}}', sans-serif;
+    font-family: '{{fontFamily}}', sans-serif;
     color: {{fontColor}};
     font-size: {{fontSize}}px;
     font-weight: {{fontWeight}};
@@ -12,13 +11,30 @@
 }
 
 .main-container{
-    overflow: hidden;
+    min-width: 300px;
+    height: 100px;
+    /*overflow: hidden;*/
 }
 
-.counter-text {
-    float: left; 
+.counter-container{
+    position: relative;
+    display: flex;
+    min-width: 300px;
+    height: 100px;
+    background-color: {{backgroundColor}};
+    border-radius: {{borderRadius}}px;
+    justify-content: center;
+    align-items: center;
 }
 
 .counter {
-    float: left; 
+    overflow: hidden;
+    height: 50px;
+    width: 125px;
+}
+
+.newCounter {
+}
+
+.currentCounter {
 }
