@@ -45,7 +45,7 @@
     },
     "labelType": {
       "type": "dropdown",
-      "label": "Label Type:",
+      "label": "Label Type",
       "value": "showText",
       "options": {
         "showImage": "Image",
@@ -63,11 +63,11 @@
       "type": "text",
       "label": "Counter label",
       "value": "Counter",
-      "group": "Customization"
+      "group": "UI Customization"
     },
     "hideAnimation": {
       "type": "dropdown",
-      "label": "Hide animation:",
+      "label": "Hide animation",
       "value": "none",
       "options": {
         "none": "None",
@@ -76,14 +76,19 @@
         "slideUp": "Slide up",
         "slideDown": "Slide down"
       },
-      "group": "Customization"
+      "group": "UI Customization"
+    },
+    "animationDuration": {
+      "type": "number",
+      "label": "Animation duration (in ms)",
+      "value": 1000,
+      "group": "UI Customization"
     },
     "hideDelay": {
       "type": "text",
       "label": "Hide delay (in ms)",
       "value": 5000,
-      "group": "Customization"
-  
+      "group": "UI Customization"
     },
     "counterCommand": {
       "type": "text",

@@ -26,6 +26,23 @@ The following can be customized by accessing the widget settings (excluding font
 | Add counter command | Twitch chat command for adding 1 to the counter | !counterup |
 | Subtract counter command | Twitch chat command for subtracting 1 from the counter | !counterdown |
 | Reset counter command | Twitch chat command for resetting the counter to 0 | !counterreset |
+| Initial value | First value when counter is loaded | 0 |
+
+#### UI Customization
+| Field | Description | Default Value |
+| ------ | ------ | ------ |
+| Border Radius | Background's Border Radius | 10
+| Background Color | Color of the Background | rgba(255,255,255,0.75)
+| Animation duration | Duration of the slide animation (if applicable) | 1000
+| Hide delay (in ms) | Delay before hiding the counter | 5000
+
+#### Typography
+| Field | Default Value |
+| ------ | ------ |
+| Font Family | Montserrat
+| Font Size | 50
+| Font Weight | 400
+| Font Color | rgba(255,255,255,1)
 
 #### Hide Animation options
 | Animation | Description |

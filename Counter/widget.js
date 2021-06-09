@@ -6,8 +6,8 @@ let values = {
   counter, 
   previousCounter
 };
-let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, initialCounterValue;
-let originAnimationStyle,destinationAnimationStyle;
+let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, initialCounterValue, animationDuration;
+let originAnimationStyle, destinationAnimationStyle;
 
 window.addEventListener('onEventReceived', function (obj) {
     if (obj.detail.listener !== "message") return;
@@ -29,7 +29,6 @@ window.addEventListener('onEventReceived', function (obj) {
         }
         setCounter(parsed);
         showCounterIfHidden(counter);
-        // setCounterText(counter);
       }
       else {
         showCounterIfHidden();
@@ -40,7 +39,6 @@ window.addEventListener('onEventReceived', function (obj) {
      console.log("Adding to counter.");
      setCounter(counter + 1);
      showCounterIfHidden(counter);
-    //  setCounterText(counter);
    }
   
    else if(command === counterSubtractCommand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
@@ -49,14 +47,12 @@ window.addEventListener('onEventReceived', function (obj) {
       setCounter(counter - 1);
      };
      showCounterIfHidden(counter);
-    //  setCounterText(counter);
    }
    
    else if(command === counterResetCommand && (badges.includes("broadcaster") || badges.includes("moderator"))) {
      console.log("Resetting counter.");
      setCounter(0);
      showCounterIfHidden(counter);
-    //  setCounterText(counter);
    }
 });
 
@@ -74,9 +70,9 @@ function setCounterText (counter) {
     marginTop: '-65px',
     easing: 'easeInExpo',
     complete: function(anim) {
-		document.querySelector('.currentCounter').innerHTML = counter;
-      	let currentCounterElement = document.querySelector('.currentCounter');
-        currentCounterElement.style.marginTop = "0px";
+      document.querySelector('.currentCounter').innerHTML = counter;
+      let currentCounterElement = document.querySelector('.currentCounter');
+      currentCounterElement.style.marginTop = "0px";
   }});
 }
 
@@ -91,6 +87,7 @@ window.addEventListener('onWidgetLoad', function (obj) {
     counterSubtractCommand = fieldData.counterSubtractCommand;
     counterResetCommand = fieldData.counterResetCommand;
     initialCounterValue = fieldData.initialCount;
+    animationDuration = fieldData.animationDuration;
 
     if(hideAnimation === "none") {
     	hidden = false; 
@@ -130,7 +127,7 @@ function showCounterIfHidden(counter) {
       ...originAnimationStyle,
       targets: '.counter-container',
       easing: 'easeOutExpo',
-      duration: 1000,
+      duration: animationDuration,
       complete: function(anim) {
         //do it here
         hidden = false;
@@ -143,7 +140,7 @@ function showCounterIfHidden(counter) {
       targets: '.counter-container',
       delay: hideDelay,
       easing: 'easeInExpo',
-      duration: 1000,
+      duration: animationDuration,
       complete: function(anim) {
         hidden = true;
       }
