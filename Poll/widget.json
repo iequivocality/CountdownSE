@@ -1,0 +1,108 @@
+{
+    "borderRadius" : {
+      "type": "number",
+      "label": "Border Radius",
+      "value": 10,
+      "group": "UI Customization"
+    },
+    "backgroundColor": {
+      "label": "Background Color",
+      "type": "colorpicker",
+      "value": "rgba(255,255,255,0.75)",
+      "group": "UI Customization"
+    },
+    "borderColor": {
+      "label": "Border Color",
+      "type": "colorpicker",
+      "value": "rgba(255,255,255,0.75)",
+      "group": "UI Customization"
+    },
+    "accentColor": {
+      "label": "Accent Color",
+      "type": "colorpicker",
+      "value": "rgba(255,255,255,0.75)",
+      "group": "UI Customization"
+    },
+    "fontFamily": {
+      "group": "Typography",
+      "type": "googleFont",
+      "label": "Font family",
+      "value": "Montserrat"
+    },
+    "fontSize": {
+      "type": "number",
+      "label": "Font size",
+      "value": 50,
+      "group": "Typography"
+    },
+    "fontWeight": {
+      "label": "Font Weight",
+      "type": "dropdown",
+      "value": "400",
+      "options": {
+        "100": "Thin (100)",
+        "300": "Light (300)",
+        "400": "Regular (400)",
+        "500": "Medium (500)",
+        "700": "Bold (700)",
+        "900": "Black (900)"
+      },
+      "group": "Typography"
+    },
+    "fontColor": {
+      "type": "colorpicker",
+      "label": "Font Color",
+      "value": "rgba(255,255,255,1)",
+      "group": "Typography"
+    },
+    "pollLabel": {
+      "type": "text",
+      "label": "Poll label",
+      "value": "Poll",
+      "group": "Customization"
+    },
+    "isMultipleVotingEnabled": {
+      "type": "checkbox",
+      "label": "Accept multiple votes per user",
+      "value": true,
+      "group": "Customization"
+  	},
+    "hideAnimation": {
+      "type": "dropdown",
+      "label": "Hide animation:",
+      "value": "none",
+      "options": {
+        "none": "None",
+        "slideRight": "Slide right",
+        "slideLeft": "Slide left",
+        "slideUp": "Slide up",
+        "slideDown": "Slide down"
+      },
+      "group": "Customization"
+    },
+    "hideDelay": {
+      "type": "text",
+      "label": "Hide delay (in ms)",
+      "value": 5000,
+      "group": "Customization"
+  
+    },
+    "pollCommand": {
+      "type": "text",
+      "label": "Start poll command",
+      "value": "!poll",
+      "group": "Customization"
+    },
+    "widgetName": {
+      "type": "hidden",
+      "value": "WiccaWidgets Poll"
+    },
+    "widgetAuthor": {
+      "type": "hidden",
+      "value": "kemaoaoao"
+    },
+    "widgetUpdateUrl": {
+      "type": "hidden",
+      "value": "https://github.com/iequivocality/WiccaWidgets"
+    }
+  }

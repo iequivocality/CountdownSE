@@ -1,0 +1,106 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
+
+* {
+    font-family: '{{fontFamily}}', sans-serif;
+    color: {{fontColor}};
+    font-size: {{fontSize}}px;
+    font-weight: {{fontWeight}};
+    text-shadow:{textShadow};
+  	text-align: left;
+  	scroll-behavior: smooth;
+}
+
+.main-container{
+    min-width: 150px;
+    /*overflow: hidden;*/
+}
+
+.poll-container{
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    padding: 30px;
+    background-color: {{backgroundColor}};
+    border-style: solid;
+    border-color: {{borderColor}};
+    border-radius: {{borderRadius}}px;
+    justify-content: center;
+}
+
+.poll-label{
+  min-height: 50px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+}
+
+.poll-options{
+  counter-reset: option-counter;
+}
+
+.poll-option{
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  min-height: 50px;
+  counter-increment: option-counter;
+}
+
+.poll-option-text-container{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 85px;
+  padding-left: 10px;
+}
+
+.poll-option-text{
+  display: flex;
+  align-items: center;
+  min-height: 55px;
+}
+
+.poll-option::before {
+  content: counter(option-counter);
+  padding: 5px 20px;
+  height: 40px;
+  background: rgba(45, 39, 39, 0.9);
+  text-align: center;
+  color: white;
+  margin-right: 20px;
+  border-style: solid;
+  border-color: {{accentColor}};
+  border-radius: {{borderRadius}}px;
+}
+
+.poll-option-result {
+  display: flex;
+  align-items: center;
+  height: 25px;
+  width: 100%;
+}
+
+.poll-bar {
+  display: flex;
+  height: 10px;
+  width: 75%;
+  align-items: flex-start;
+  border: 4px solid white;
+  background-color: rgba(1, 1, 1, 0.5);
+  overflow: hidden;
+}
+
+.poll-total-bar {
+  height: 10px;
+  width: 0%;
+  background: {{accentColor}};
+  overflow: hidden;
+  background-size: 400% 400%;
+}
+
+.poll-option-percentage {
+  font-size: 24px;
+  margin-left: 15px;
+}
