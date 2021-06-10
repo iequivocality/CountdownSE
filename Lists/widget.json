@@ -54,5 +54,17 @@
         "type": "string",
         "label": "Title of the List",
         "value": "List"
+    },
+    "widgetName": {
+        "type": "hidden",
+        "value": "WiccaWidgets Lists"
+    },
+    "widgetAuthor": {
+        "type": "hidden",
+        "value": "ambidere (iequivocality)"
+    },
+    "widgetUpdateUrl": {
+        "type": "hidden",
+        "value": "https://github.com/iequivocality/WiccaWidgets/blob/main/Lists"
     }
 }
