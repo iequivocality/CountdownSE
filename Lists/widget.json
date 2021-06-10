@@ -49,11 +49,41 @@
         "value": "rgba(255,255,255,0.75)",
         "group": "Container"
     },
+    "listHeight" : {
+        "type": "number",
+        "label": "List height",
+        "value": 600,
+        "group": "Container"
+    },
+    "listWidth" : {
+        "type": "number",
+        "label": "List width",
+        "value": 400,
+        "group": "Container"
+    },
     "listTitle": {
         "group": "List Settings",
         "type": "string",
         "label": "Title of the List",
         "value": "List"
+    },
+    "addToListCommand": {
+        "group": "List Settings",
+        "type": "string",
+        "label": "Add to list command",
+        "value": "!addlist"
+    },
+    "resetListCommand": {
+        "group": "List Settings",
+        "type": "string",
+        "label": "Reset list command",
+        "value": "!resetlist"
+    },
+    "removeFromListCommand": {
+        "group": "List Settings",
+        "type": "string",
+        "label": "Remove from list command",
+        "value": "!removelist"
     },
     "widgetName": {
         "type": "hidden",

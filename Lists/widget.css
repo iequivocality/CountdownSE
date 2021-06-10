@@ -7,8 +7,8 @@
 }
 
 .list-container {
-    width: 400px;
-    height: 600px;
+    width: {{listWidth}}px;
+    height: {{listHeight}}px;
     padding: 5px;
     background-color: {{backgroundColor}};
     border-radius: {{borderRadius}}px;
