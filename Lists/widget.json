@@ -1,0 +1,58 @@
+{
+    "labelFontSize": {
+        "type": "number",
+        "label": "Title Font size",
+        "value": 50,
+        "group": "Typography"
+    },
+    "contentFontSize": {
+        "type": "number",
+        "label": "Content Font size",
+        "value": 40,
+        "group": "Typography"
+    },
+    "fontFamily": {
+        "type": "googleFont",
+        "label": "Font family",
+        "value": "Montserrat",
+        "group": "Typography"
+    },
+    "fontColor": {
+        "type": "colorpicker",
+        "label": "Font Color",
+        "value": "rgba(255,255,255,1)",
+        "group": "Typography"
+    },
+    "fontWeight": {
+        "group": "Typography",
+        "label": "Font Weight",
+        "type": "dropdown",
+        "value": "400",
+        "options": {
+            "100": "Thin (100)",
+            "300": "Light (300)",
+            "400": "Regular (400)",
+            "500": "Medium (500)",
+            "700": "Bold (700)",
+            "900": "Black (900)"
+        }
+    },
+    "borderRadius" : {
+        "type": "number",
+        "label": "Border Radius",
+        "value": 10,
+        "group": "Container"
+    },
+    "backgroundColor": {
+        "label": "Background Color",
+        "type": "colorpicker",
+        "value": "rgba(255,255,255,0.75)",
+        "group": "Container"
+    },
+    "listTitle": {
+        "group": "List Settings",
+        "type": "string",
+        "label": "Title of the List",
+        "value": "List"
+    }
+}

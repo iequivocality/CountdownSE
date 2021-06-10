@@ -1,0 +1,28 @@
+* {
+    font-family: '{{fontFamily}}', sans-serif;
+    color: {{fontColor}};
+    font-weight: {{fontWeight}};
+  	text-align: left;
+  	scroll-behavior: smooth;
+}
+
+.list-container {
+    width: 400px;
+    height: 600px;
+    padding: 5px;
+    background-color: {{backgroundColor}};
+    border-radius: {{borderRadius}}px;
+}
+
+.list-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 10px);
+    height: 40px;
+    font-size: {{labelFontSize}}px;
+}
+
+.list-content {
+    font-size: {{contentFontSize}}px;
+}
