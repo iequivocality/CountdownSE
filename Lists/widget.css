@@ -1,7 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family={{fontFamily}}:wght@{{titleFontWeight}};{{contentFontWeight}}&display=swap');
 * {
     font-family: '{{fontFamily}}', sans-serif;
-    color: {{fontColor}};
-    font-weight: {{fontWeight}};
   	text-align: left;
   	scroll-behavior: smooth;
 }
@@ -9,20 +8,42 @@
 .list-container {
     width: {{listWidth}}px;
     height: {{listHeight}}px;
-    padding: 5px;
+    padding: 10px;
     background-color: {{backgroundColor}};
     border-radius: {{borderRadius}}px;
 }
 
 .list-title {
     display: flex;
-    justify-content: center;
+    justify-content: {{titleItemAlignment}};
     align-items: center;
     width: calc(100% - 10px);
     height: 40px;
+    color: {{titleFontColor}};
     font-size: {{labelFontSize}}px;
+    font-weight: {{titleFontWeight}};
+}
+
+.list-content-container {
+    position: relative;
+    width: calc({{listWidth}}px - 10px);
 }
 
 .list-content {
+    color: {{contentFontColor}};
     font-size: {{contentFontSize}}px;
+    font-weight: {{contentFontWeight}};
+    overflow-x: hidden;
+}
+
+.list-item {
+    position: absolute;
+    left: 0;
+    width: calc({{listWidth}}px - 20px);
+    height: {{listItemHeight}}px;
+    margin-left: 150%;
+    display: flex;
+    justify-content: {{contentItemAlignment}};
+    align-items: center;
+    
 }
