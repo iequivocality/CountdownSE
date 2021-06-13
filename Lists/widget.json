@@ -101,7 +101,7 @@
         "group": "Container",
         "label": "Background Color",
         "type": "colorpicker",
-        "value": "rgba(255,255,255,0.75)"
+        "value": "rgba(0,0,0,0.75)"
     },
     "listHeight" : {
         "group": "Container",
@@ -145,13 +145,145 @@
         "label": "Remove from list command",
         "value": "!removelist"
     },
+    "toggleListCommand": {
+        "group": "List Settings",
+        "type": "string",
+        "label": "Hide/show list command",
+        "value": "!togglelist"
+    },
+    "listDisplayInitial": {
+        "group": "List Settings",
+        "type": "dropdown",
+        "label": "Hide/show list command",
+        "value": "show",
+        "options": {
+            "show": "Show",
+            "hide": "Hide"
+        }
+    },
+    "showListAnimationStyle": {
+        "group": "Animation Settings",
+        "type": "dropdown",
+        "label": "Show Animation Style",
+        "value": "fade",
+        "options": {
+            "slideUp": "Slide Up",
+            "slideDown": "Slide down",
+            "slideLeft": "Slide left",
+            "slideRight": "Slide right",
+            "fade": "Fade"
+        }
+    },
+    "showListAnimationTiming": {
+        "group": "Animation Settings",
+        "type": "dropdown",
+        "label": "Show slide animation timing",
+        "value": "linear",
+        "options": {
+            "linear": "linear",
+            "easeInQuad": "easeInQuad",
+            "easeOutQuad": "easeOutQuad",
+            "easeInOutQuad": "easeInOutQuad",
+            "easeOutInQuad": "easeOutInQuad",
+            "easeInCubic": "easeInCubic",
+            "easeOutCubic": "easeOutCubic",
+            "easeInOutCubic": "easeInOutCubic",
+            "easeOutInCubic": "easeOutInCubic",
+            "easeInQuart": "easeInQuart",
+            "easeOutQuart": "easeOutQuart",
+            "easeInOutQuart": "easeInOutQuart",
+            "easeOutInQuart": "easeOutInQuart",
+            "easeInQuint": "easeInQuint",
+            "easeOutQuint": "easeOutQuint",
+            "easeInOutQuint": "easeInOutQuint",
+            "easeOutInQuint": "easeOutInQuint",
+            "easeInSine": "easeInSine",
+            "easeOutSine": "easeOutSine",
+            "easeInOutSine": "easeInOutSine",
+            "easeOutInSine": "easeOutInSine",
+            "easeInExpo": "easeInExpo",
+            "easeOutExpo": "easeOutExpo",
+            "easeInOutExpo": "easeInOutExpo",
+            "easeOutInExpo": "easeOutInExpo",
+            "easeInCirc": "easeInCirc",
+            "easeOutCirc": "easeOutCirc",
+            "easeInOutCirc": "easeInOutCirc",
+            "easeOutInCirc": "easeOutInCirc",
+            "easeInBack": "easeInBack",
+            "easeOutBack": "easeOutBack",
+            "easeInOutBack": "easeInOutBack",
+            "easeOutInBack": "easeOutInBack",
+            "easeInBounce": "easeInBounce",
+            "easeOutBounce": "easeOutBounce",
+            "easeInOutBounce": "easeInOutBounce",
+            "easeOutInBounce": "easeOutInBounce"
+        }
+    },
+    "hideListAnimationStyle": {
+        "group": "Animation Settings",
+        "type": "dropdown",
+        "label": "Hide Animation Style",
+        "value": "fade",
+        "options": {
+            "slideUp": "Slide Up",
+            "slideDown": "Slide down",
+            "slideLeft": "Slide left",
+            "slideRight": "Slide right",
+            "fade": "Fade"
+        }
+    },
+    "hideListAnimationTiming": {
+        "group": "Animation Settings",
+        "type": "dropdown",
+        "label": "Hide slide animation timing",
+        "value": "linear",
+        "options": {
+            "linear": "linear",
+            "easeInQuad": "easeInQuad",
+            "easeOutQuad": "easeOutQuad",
+            "easeInOutQuad": "easeInOutQuad",
+            "easeOutInQuad": "easeOutInQuad",
+            "easeInCubic": "easeInCubic",
+            "easeOutCubic": "easeOutCubic",
+            "easeInOutCubic": "easeInOutCubic",
+            "easeOutInCubic": "easeOutInCubic",
+            "easeInQuart": "easeInQuart",
+            "easeOutQuart": "easeOutQuart",
+            "easeInOutQuart": "easeInOutQuart",
+            "easeOutInQuart": "easeOutInQuart",
+            "easeInQuint": "easeInQuint",
+            "easeOutQuint": "easeOutQuint",
+            "easeInOutQuint": "easeInOutQuint",
+            "easeOutInQuint": "easeOutInQuint",
+            "easeInSine": "easeInSine",
+            "easeOutSine": "easeOutSine",
+            "easeInOutSine": "easeInOutSine",
+            "easeOutInSine": "easeOutInSine",
+            "easeInExpo": "easeInExpo",
+            "easeOutExpo": "easeOutExpo",
+            "easeInOutExpo": "easeInOutExpo",
+            "easeOutInExpo": "easeOutInExpo",
+            "easeInCirc": "easeInCirc",
+            "easeOutCirc": "easeOutCirc",
+            "easeInOutCirc": "easeInOutCirc",
+            "easeOutInCirc": "easeOutInCirc",
+            "easeInBack": "easeInBack",
+            "easeOutBack": "easeOutBack",
+            "easeInOutBack": "easeInOutBack",
+            "easeOutInBack": "easeOutInBack",
+            "easeInBounce": "easeInBounce",
+            "easeOutBounce": "easeOutBounce",
+            "easeInOutBounce": "easeInOutBounce",
+            "easeOutInBounce": "easeOutInBounce"
+        }
+    },
     "widgetName": {
         "type": "hidden",
         "value": "WiccaWidgets Lists"
     },
     "widgetAuthor": {
         "type": "hidden",
-        "value": "ambidere (iequivocality)"
+        "value": "ambidere (iequivocality) - https://twitch.tv/ambidere"
     },
     "widgetUpdateUrl": {
         "type": "hidden",

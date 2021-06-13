@@ -1,6 +1,30 @@
 const items = [];
-let addToListCommand, resetListCommand, removeFromListCommand;
+let hidden = false;
+let addToListCommand, resetListCommand, removeFromListCommand, toggleListCommand, listDisplayInitial,
+    hideListAnimationStyle, showListAnimationStyle, showListAnimationTiming, hideListAnimationTiming,
+    addingAnimationStyle, addingAnimationTiming, removingAnimationStyle, removingAnimationTiming;
 let listItemHeight;
+
+window.addEventListener('onWidgetLoad', function (obj) {
+    let fieldData = obj.detail.fieldData;
+    console.log("fieldData", fieldData)
+    addToListCommand = fieldData.addToListCommand;
+    resetListCommand = fieldData.resetListCommand;
+    removeFromListCommand = fieldData.removeFromListCommand;
+    toggleListCommand = fieldData.toggleListCommand;
+    listDisplayInitial = fieldData.listDisplayInitial;
+    hideListAnimationStyle = fieldData.hideListAnimationStyle;
+    showListAnimationStyle = fieldData.showListAnimationStyle;
+    showListAnimationTiming = fieldData.showListAnimationTiming;
+    hideListAnimationTiming = fieldData.hideListAnimationTiming;
+
+    listItemHeight = fieldData.listItemHeight;
+
+    if (listDisplayInitial === "hide") {
+        let listContainer = document.querySelector('.list-container');
+        listContainer.style.marginLeft = '150%';
+    }
+});
 
 window.addEventListener('onEventReceived', function (obj) {
     if (obj.detail.listener !== "message") return;
@@ -22,6 +46,7 @@ window.addEventListener('onEventReceived', function (obj) {
         anime({
             targets: "." + identifier,
             delay: 1000,
+            easing: "easeInOutQuad",
             marginLeft: '0px',
             duration: 1000
         });
@@ -47,6 +72,7 @@ window.addEventListener('onEventReceived', function (obj) {
                 anime({
                     targets: '.item-' + indexForRemoval,
                     marginLeft: '150%',
+                    easing: "easeInOutQuad",
                     delay: anime.stagger(100),
                     complete: function (anim) {
                         document.querySelector('.item-' + indexForRemoval).remove();
@@ -69,20 +95,68 @@ window.addEventListener('onEventReceived', function (obj) {
         }
         catch (err) {}
     }
+    else if (command === toggleListCommand && isModeratorOrBroadcaster(badges)) {
+        let animationStyle = hidden ? showListAnimationStyle : hideListAnimationStyle;
+        let timing = hidden ? showListAnimationTiming : hideListAnimationTiming;
+        let propertyObject = getDestinationProperty(animationStyle, timing);
+        console.log("propertyObject", propertyObject);
+
+        if (hidden && animationStyle != "fade") {
+            document.querySelector('.list-container').style.opacity = 1;
+        }
+
+        anime({
+            targets: '.list-container',
+            complete: function (anim) {
+                hidden = false;
+            },
+            ...propertyObject
+        });
+
+        // if (hidden) {
+        //     //immediately set opacity to 1 when animationStyle is not fade
+        //     if (hidden && animationStyle != "fade") {
+        //         document.querySelector('.list-container').style.opacity = 1;
+        //     }
+
+        //     anime({
+        //         targets: '.list-container',
+        //         complete: function (anim) {
+        //             hidden = false;
+        //         },
+        //         ...propertyObject
+        //     });
+        // }
+        // else {
+        //     anime({
+        //         targets: '.list-container',
+        //         // marginLeft: '150%',
+        //         complete: function (anim) {
+        //             hidden = true;
+        //         },
+        //         ...propertyObject
+        //     });
+        // }
+    }
 });
+
+function getDestinationProperty(animationStyle, easing) {
+    if (animationStyle == "slideUp") {
+        return { marginBottom: hidden ? '0%' : '150%', easing: easing };
+    } else if (animationStyle == "slideDown") {
+        return { marginTop: hidden ? '0%' : '150%', easing: easing };
+    } else if (animationStyle == "slideLeft") {
+        return { marginRight: hidden ? '0%' : '150%', easing: easing };
+    } else if (animationStyle == "slideRight") {
+        return { marginLeft: hidden ? '0%' : '150%', easing: easing };
+    } else if (animationStyle == "fade") {
+        return { opacity: hidden ? 1 : 0, easing: easing };
+    }
+}
   
 function isModeratorOrBroadcaster(badges) {
 	return badges.includes("broadcaster") || badges.includes("moderator");
 }
-
-window.addEventListener('onWidgetLoad', function (obj) {
-    let fieldData = obj.detail.fieldData;
-    addToListCommand = fieldData.addToListCommand;
-    resetListCommand = fieldData.resetListCommand;
-    removeFromListCommand = fieldData.removeFromListCommand;
-
-    listItemHeight = fieldData.listItemHeight;
-});
 
 function getBadges(badges) {
     return badges.map(function(val){
