@@ -19,13 +19,13 @@
     },
     "titleFontColor": {
         "type": "colorpicker",
-        "label": "Font Color",
+        "label": "Title Font Color",
         "value": "rgba(255,255,255,1)",
         "group": "Typography"
     },
     "contentFontColor": {
         "type": "colorpicker",
-        "label": "Font Color",
+        "label": "Content Font Color",
         "value": "rgba(255,255,255,1)",
         "group": "Typography"
     },
@@ -78,6 +78,18 @@
             "center": "Center",
             "flex-end": "Right"
         }
+    },
+    "borderColor" : {
+        "type": "string",
+        "label": "Border Color",
+        "value": "rgba(255,255,255,0.75)",
+        "group": "Container"
+    },
+    "borderThickness" : {
+        "type": "number",
+        "label": "Border Thickness",
+        "value": 3,
+        "group": "Container"
     },
     "borderRadius" : {
         "type": "number",
