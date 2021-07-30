@@ -23,7 +23,7 @@
     margin-bottom: 10px;
     padding: 10px;
     text-align: left;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -31,22 +31,38 @@
 
 .user-box {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     height: {{fontSize}}px;
     margin-bottom: 4px;
 }
 
 .user-name {
-    flex: 1;
     text-transform: uppercase;
     font-size: {{titleFontSize}}px;
     font-weight: {{titleFontWeight}};
+    padding: 2px 5px;
+    border-radius: 5px;
 }
 
 .user-badges {
+    margin-left: auto;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+}
+
+.moderator {
+    color: #FFF;
+    background-color: #6ab04c;
+}
+
+.broadcaster {
+    color: #FFF;
+    background-color: #eb4d4b;
+}
+
+.vip {
+    color: #FFF;
+    background-color: #e056fd;
 }
 
 .user-message {
@@ -57,6 +73,7 @@
 .badge {
     display: {{badgesVisibility}};
     height: {{titleFontSize}}px;
+    margin-left: 3px;
 }
 
 .emote {

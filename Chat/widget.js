@@ -14,6 +14,8 @@ let hideCommands = "no";
 let ignoredUsers = [];
 
 window.addEventListener('onEventReceived', function (obj) {
+    let role = "";
+
     if (obj.detail.event.listener === 'widget-button') {
         testMessage(obj);
         return;
@@ -36,18 +38,29 @@ window.addEventListener('onEventReceived', function (obj) {
     let badges = "", badge;
     for (let i = 0; i < data.badges.length; i++) {
         badge = data.badges[i];
+        if (role.length == 0) {
+            if (badge.type == "broadcaster" || badge.type == "moderator" || badge.type == "subscriber" || badge.type == "vip") {
+                role = badge.type;
+            }
+        }
         badges += `<img alt="" src="${badge.url}" class="badge"> `;
     }
     let username = data.displayName;
-    if (nickColor === "user") {
-        const color = data.displayColor !== "" ? data.displayColor : "#" + (md5(username).substr(26));
-        username = `<span style="color:${color}">${username}</span>`;
+    if (role.length == 0) {
+        if (nickColor === "user") {
+            const color = data.displayColor !== "" ? data.displayColor : "#" + (md5(username).substr(26));
+            username = `<span style="color:${color}">${username}</span>`;
+        }
+        if (nickColor === "custom") {
+            const color = customNickColor;
+            username = `<span style="color:${color}">${username}</span>`;
+        }
     }
-    if (nickColor === "custom") {
-        const color = customNickColor;
-        username = `<span style="color:${color}">${username}</span>`;
+    else {
+        username = `<span>${username}</span>`;
     }
-    addMessage(username, badges, message, data.isAction, data.userId, data.msgId);
+
+    addMessage(username, badges, message, data.isAction, data.userId, data.msgId, role);
 });
 
 window.addEventListener('onWidgetLoad', function (obj) {
@@ -120,7 +133,7 @@ function html_encode(e) {
  });
 }
 
-function addMessage(username, badges, message, isAction, uid, msgId) {
+function addMessage(username, badges, message, isAction, uid, msgId, role) {
  totalMessages += 1;
  let actionClass = "";
  if (isAction) {
@@ -130,7 +143,7 @@ function addMessage(username, badges, message, isAction, uid, msgId) {
  const element = $.parseHTML(`
  <div data-sender="${uid}" data-msgid="${msgId}" class="message-row ${animationIn} animated" id="msg-${totalMessages}">
      <div class="user-box ${actionClass}">
-        <div class="user-name">${username}</div>
+        <div class="user-name ${role}">${username}</div>
         <div class="user-badges">${badges}</div>
     </div>
      <div class="user-message ${actionClass}">${message}</div>
