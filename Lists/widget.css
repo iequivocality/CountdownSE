@@ -19,10 +19,11 @@
     justify-content: {{titleItemAlignment}};
     align-items: center;
     width: calc(100% - 10px);
-    height: 40px;
+    height: {{labelFontSize}}px;
     color: {{titleFontColor}};
     font-size: {{labelFontSize}}px;
     font-weight: {{titleFontWeight}};
+  	margin-bottom: 15px;
 }
 
 .list-content-container {
