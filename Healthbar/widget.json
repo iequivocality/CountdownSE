@@ -1,0 +1,140 @@
+{
+    "backgroundColor": {
+        "group": "Style",
+        "type": "colorpicker",
+        "label": "Background Color",
+        "value": "rgba(0,0,0,1)"
+    },
+    "fontColor": {
+        "group": "Style",
+        "type": "colorpicker",
+        "label": "Font Color",
+        "value": "rgba(1,1,1,1)"
+    },
+    "barThickness": {
+        "group": "Style",
+        "type": "number",
+        "label": "Health Bar Thickness",
+        "value": 10
+    },
+    "fontFamily": {
+        "group": "Typography",
+        "type": "googleFont",
+        "label": "Font Family",
+        "value": "Montserrat"
+    },
+    "fontWeight": {
+        "group": "Typography",
+        "label": "Font Weight",
+        "type": "dropdown",
+        "value": "400",
+        "options": {
+            "100": "Thin (100)",
+            "300": "Light (300)",
+            "400": "Regular (400)",
+            "500": "Medium (500)",
+            "700": "Bold (700)",
+            "900": "Black (900)"
+        }
+    },
+    "fontSize": {
+        "group": "Typography",
+        "label": "Font Size",
+        "type": "number",
+        "value": 20
+    },
+    "startTakingDamageCMD" : {
+        "group": "Commands",
+        "type": "text",
+        "label": "Command to allow the user to take DMG",
+        "value": "!takedamage"
+    },
+    "stopTakingDamageCMD" : {
+        "group": "Commands",
+        "type": "text",
+        "label": "Command to allow the user to stop taking DMG",
+        "value": "!stopdamage"
+    },
+    "toFullHealthCMD" : {
+        "group": "Commands",
+        "type": "text",
+        "label": "Command to allow the user to go to full health",
+        "value": "!fullheal"
+    },
+    "damageAmount": {
+        "group": "Damage",
+        "type": "number",
+        "label": "Amount of DMG per Tick",
+        "value": 2,
+        "min": 0,
+        "max": 100
+    },
+    "damageTimer": {
+        "group": "Damage",
+        "type": "number",
+        "label": "Seconds before user takes DMG",
+        "value": 30,
+        "min": 10,
+        "max": 3600
+    },
+    "startingHealth": {
+        "group": "Health/Regen",
+        "type": "number",
+        "label": "Latest Follower Points",
+        "value": 100,
+        "min": 0,
+        "max": 200
+    },
+    "latestFollowerPoints": {
+        "group": "Health/Regen",
+        "type": "number",
+        "label": "Latest Follower Points",
+        "value": 10,
+        "min": 0,
+        "max": 100
+    },
+    "latestSubscriberPoints": {
+        "group": "Health/Regen",
+        "type": "number",
+        "label": "Latest Subscriber Points",
+        "value": 20,
+        "min": 0,
+        "max": 100
+    },
+    "latestCheerPoints": {
+        "group": "Health/Regen",
+        "type": "number",
+        "label": "Latest Cheer Points",
+        "value": 10,
+        "min": 0,
+        "max": 100
+    },
+    "latestTipPoints": {
+        "group": "Health/Regen",
+        "type": "number",
+        "label": "Latest Tip Points",
+        "value": 10,
+        "min": 0,
+        "max": 100
+    },
+    "latestRaidPoints": {
+        "group": "Health/Regen",
+        "type": "number",
+        "label": "Latest Raid Points",
+        "value": 10,
+        "min": 0,
+        "max": 100
+    },
+    "widgetName": {
+        "type": "hidden",
+        "value": "WiccaWidgets Streamer Healthbar"
+    },
+    "widgetAuthor": {
+        "type": "hidden",
+        "value": "ambidere (iequivocality) - https://twitch.tv/ambidere"
+    },
+    "widgetUpdateUrl": {
+        "type": "hidden",
+        "value": "https://github.com/iequivocality/WiccaWidgets/blob/main/Healthbar"
+    }
+}

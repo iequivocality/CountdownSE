@@ -7,7 +7,6 @@ let listItemHeight;
 
 window.addEventListener('onWidgetLoad', function (obj) {
     let fieldData = obj.detail.fieldData;
-    console.log("fieldData", fieldData)
     addToListCommand = fieldData.addToListCommand;
     resetListCommand = fieldData.resetListCommand;
     removeFromListCommand = fieldData.removeFromListCommand;
