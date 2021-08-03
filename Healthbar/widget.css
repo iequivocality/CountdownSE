@@ -103,6 +103,31 @@
     width: 75%;
     justify-content: flex-start;
     align-items: center;
-    overflow-x: hidden;
+    overflow: hidden;
+    position: relative;
+    padding: 2px;
     height: {{eventFontSize}}px;
+}
+
+@keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+
+.events-marquee {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200%;
+    height: 100%;
+    position: absolute;
+    animation: marquee 10s linear infinite;
+}
+
+.events-marquee span {
+    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 75%;
+    flex-wrap: nowrap;
 }

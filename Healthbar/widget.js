@@ -42,9 +42,18 @@ window.addEventListener('onEventReceived', function (obj) {
     let listener = obj.detail.listener;
     let event = obj.detail.event;
 
+    if (!isValidEvent(listener)) {
+        return;
+    }
+
     eventQueue.push({ listener : listener, event : event });
     parseQueue();
 });
+
+function isValidEvent(listener) {
+    return listener == "message" || listener == "follower-latest" || listener == "subscriber-latest" || listener == "cheer-latest"
+        || listener == "tip-latest" || listener == "raid-latest";
+}
 
 function healthbar(listener, event) {
     if (listener == "message") {
@@ -63,10 +72,11 @@ function parseQueue() {
     if (animating) {
         return;
     }
-    if (!eventQueue.length) {
+    if (eventQueue.length == 0) {
         return;
     }
     let item = eventQueue.shift();
+    console.log("parseQueue", item)
     healthbar(item.listener, item.event);
 }
 
@@ -115,8 +125,10 @@ function refreshView() {
         health : previousHealth
     }
 
-    let eventsElement = document.querySelector('.events');
-    eventsElement.innerText = label;
+    // let eventsElement = document.querySelector('.events');
+    // eventsElement.innerText = label;
+
+    $('.events-marquee span').text(label);
 
     anime({
         targets: updateObject,
