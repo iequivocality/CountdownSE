@@ -2,7 +2,7 @@
 
 * {
     font-family: {{fontFamily}}, sans-serif;
-    font-size: {{fontSize}};
+    font-size: {{eventFontSize}}px;
     color: {{fontColor}};
 }
 
@@ -13,6 +13,7 @@
     align-items: center;
     width: 95%;
     height: 95%;
+    margin: auto;
 }
 
 .healthbar-container {
@@ -35,22 +36,73 @@
     width: 75%;
     justify-content: space-between;
     align-items: center;
+
+    font-size: {{hpFontSize}}px;
+}
+
+.number-health {
+    font-size: {{hpFontSize}}px;
 }
 
 .healthbar {
     position: relative;
     overflow: hidden;
     width: 75%;
-    background-color: #FFF; 
+    background-color: {{barBackgroundColor}}; 
     border-radius: 5px;
+    margin: 4px 0px;
 
     height: {{barThickness}}px;
 }
 
+@keyframes loopCritical {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+  }
+
+.critical-healthbar {
+    animation-duration: 0.75s;
+    animation-name: loopCritical;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 .remaining-health {
     position: absolute;
-    background-color: #F0F;
+    transition: background-color 1s;
     top: 0;
     left: 0;
     height: 100%;
+
+    background-color: {{stableHealth}};
+}
+
+.beyond-health {
+    background-color: {{beyondHealth}};
+}
+
+.stable-health {
+    background-color: {{stableHealth}};
+}
+
+.moderate-health {
+    background-color: {{moderateHealth}};
+}
+
+.critical-health {
+    background-color: {{criticalHealth}};
+}
+
+.events {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: hidden;
+    height: {{eventFontSize}}px;
 }

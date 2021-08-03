@@ -1,10 +1,13 @@
+let eventQueue = [];
+
 let streamerHealth = 100;
 let maxHealth = 100;
 let previousHealth = 100;
 let followerRegen = 0, subRegen = 0, cheerRegen = 0, tipRegen = 0, raidRegen = 0; //Health points
-let damageAmount = 0, damageTimer = 0; //DMG data
+let damageAmount = 0, damageTimer = 0, lickDamageAmount = 0; //DMG data
 let startTakingDamageCMD = '', stopTakingDamageCMD = '', toFullHealthCMD = '';//commands
 let shouldTakeDMG = false;
+let animating = false;
 let provider = "twitch";
 let label = "";
 let lickCooldown = 15000;
@@ -20,6 +23,7 @@ window.addEventListener('onWidgetLoad', function (obj) {
 
     damageAmount = data.damageAmount;
     damageTimer = data.damageTimer;
+    lickDamageAmount = data.lickDamageAmount;
 
     streamerHealth = data.startingHealth;
     startTakingDamageCMD = data.startTakingDamageCMD;
@@ -36,18 +40,35 @@ window.addEventListener('onWidgetLoad', function (obj) {
 
 window.addEventListener('onEventReceived', function (obj) {
     let listener = obj.detail.listener;
-    let data = obj.detail.event.data;
+    let event = obj.detail.event;
 
+    eventQueue.push({ listener : listener, event : event });
+    parseQueue();
+});
+
+function healthbar(listener, event) {
     if (listener == "message") {
+        let data = event.data;
         let message = data.text.trim();
         let badges = getBadges(data.badges);
-        processCommands(message, badges);
+        processCommands(message, badges, data.channel, data.nick);
         return;
     }
 
-    regenerateHealth(listener, data);
+    regenerateHealth(listener, event);
+    parseQueue();
+}
 
-});
+function parseQueue() {
+    if (animating) {
+        return;
+    }
+    if (!eventQueue.length) {
+        return;
+    }
+    let item = eventQueue.shift();
+    healthbar(item.listener, item.event);
+}
 
 function takeDamage() {
     if (shouldTakeDMG) {
@@ -61,18 +82,30 @@ function takeDamage() {
     }
 }
 
-function regenerateHealth(listener, data) {
+function regenerateHealth(listener, event) {
+    console.log("regenerateHealth", event);
     previousHealth = streamerHealth;
     if (listener == "follower-latest") {
+        label = `New Follower (+${followerRegen})`;
         streamerHealth += followerRegen;
     } else if (listener == "subscriber-latest") {
-        streamerHealth += subRegen;
+        if (event.bulkGifted) {
+            streamerHealth += subRegen * event.amount;
+            label = `Gifted Subs (+${subRegen} * ${event.amount})`;
+        }
+        else {
+            streamerHealth += subRegen;
+            label = `New Subscriber (+${subRegen})`;
+        }
     } else if (listener == "cheer-latest") {
         streamerHealth += cheerRegen;
+        label = `New Cheer - ${event.amount} bits (+${cheerRegen})`;
     } else if (listener == "tip-latest") {
         streamerHealth += tipRegen;
+        label = `New Tip (+${tipRegen})`;
     } else if (listener == "raid-latest") {
         streamerHealth += raidRegen;
+        label = `Raid Alert (+${raidRegen})`;
     }
     refreshView();
 }
@@ -82,45 +115,80 @@ function refreshView() {
         health : previousHealth
     }
 
+    let eventsElement = document.querySelector('.events');
+    eventsElement.innerText = label;
+
     anime({
         targets: updateObject,
         health: streamerHealth,
         easing: 'easeInQuad',
         round: 1,
         begin: function(anim) {
-            shouldTakeDMG = false;
+            animating = true;
         },
         complete: function(anim) {
-            shouldTakeDMG = true;
+            animating = false;
         },
         update: function() {
-            let totalPercentage = (updateObject.health / maxHealth) * 100;
+            let totalPercentage = Math.ceil(updateObject.health / maxHealth * 100);
             let remHealthElement = document.querySelector('.remaining-health');
-            let numberHealth = document.querySelector('.number-health');
+            remHealthElement.classList.remove('beyond-health');
+            remHealthElement.classList.remove('stable-health');
+            remHealthElement.classList.remove('moderate-health');
+            remHealthElement.classList.remove('critical-health');
+
+            let healthbar = document.querySelector('.healthbar');
+            healthbar.classList.remove('critical-healthbar');
+
+            if (totalPercentage > 100) {
+                remHealthElement.classList.add('beyond-health');
+            } else if (totalPercentage >= 50) {
+                remHealthElement.classList.add('stable-health');
+            } else if (totalPercentage >= 30) {
+                remHealthElement.classList.add('moderate-health');
+            } else if (totalPercentage >= 0) {
+                remHealthElement.classList.add('critical-health');
+                
+                healthbar.classList.add('critical-healthbar');
+            }
+
             remHealthElement.style.width = `${totalPercentage}%`;
+
+            let numberHealth = document.querySelector('.number-health');
             numberHealth.innerHTML = `${totalPercentage}%`;
         }
     });
 }
 
-function processCommands(message, badges) {
-    if (message.startsWith('!') && isModeratorOrBroadcaster(badges)) {
-        if (message == startTakingDamageCMD) {
-            shouldTakeDMG = true;
-        } else if (message == stopTakingDamageCMD) {
-            shouldTakeDMG = false;
-        } else if (message == toFullHealthCMD) {
-            streamerHealth = 100;
-            refreshView();
-        } else if (message == '!lick') {
-            if (Math.random() == 1) {
-                streamerHealth -= 1;
-                allowLick = false;
-                setTimeout(() => {
-                    allowLick = true;
-                }, lickCooldown);
+function processCommands(message, badges, channel, nick) {
+    if (message.startsWith('!')) {
+        if (message == '!lick') {
+            lick(channel, nick);
+        } else if (isModeratorOrBroadcaster(badges)) {
+            if (message == startTakingDamageCMD) {
+                shouldTakeDMG = true;
+            } else if (message == stopTakingDamageCMD) {
+                shouldTakeDMG = false;
+            } else if (message == toFullHealthCMD) {
+                previousHealth = streamerHealth;
+                streamerHealth = 100;
+                refreshView();
             }
         }
+    }
+}
+
+function lick(channel, nick) {
+    if (allowLick && Math.floor(Math.random() * 100) > 66) {
+        streamerHealth -= lickDamageAmount;
+        allowLick = false;
+        label = 'Somebody licked me ;_; (-' + lickDamageAmount + ')';
+
+        refreshView();
+
+        setTimeout(() => {
+            allowLick = true;
+        }, lickCooldown);
     }
 }
 

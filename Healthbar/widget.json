@@ -1,4 +1,34 @@
 {
+    "beyondHealth": {
+        "group": "Style",
+        "type": "colorpicker",
+        "label": "Stable Healthbar Color",
+        "value": "#feca57"
+    },
+    "stableHealth": {
+        "group": "Style",
+        "type": "colorpicker",
+        "label": "Stable Healthbar Color",
+        "value": "#1dd1a1"
+    },
+    "moderateHealth": {
+        "group": "Style",
+        "type": "colorpicker",
+        "label": "Moderate Healthbar Color",
+        "value": "#ff9f43"
+    },
+    "criticalHealth": {
+        "group": "Style",
+        "type": "colorpicker",
+        "label": "Critical Healthbar Color",
+        "value": "#ee5253"
+    },
+    "barBackgroundColor": {
+        "group": "Style",
+        "type": "colorpicker",
+        "label": "Bar Background Color",
+        "value": "#576574"
+    },
     "backgroundColor": {
         "group": "Style",
         "type": "colorpicker",
@@ -37,11 +67,17 @@
             "900": "Black (900)"
         }
     },
-    "fontSize": {
+    "eventFontSize": {
         "group": "Typography",
-        "label": "Font Size",
+        "label": "Event Font Size",
         "type": "number",
-        "value": 20
+        "value": 12
+    },
+    "hpFontSize": {
+        "group": "Typography",
+        "label": "HPFont Size",
+        "type": "number",
+        "value": 16
     },
     "startTakingDamageCMD" : {
         "group": "Commands",
@@ -76,6 +112,14 @@
         "value": 30,
         "min": 10,
         "max": 3600
+    },
+    "lickDamageAmount": {
+        "group": "Damage",
+        "type": "number",
+        "label": "Lick Damage",
+        "value": 5,
+        "min": 0,
+        "max": 20
     },
     "startingHealth": {
         "group": "Health/Regen",
