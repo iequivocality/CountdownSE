@@ -1,0 +1,58 @@
+{
+    "toggleSkillRandomizeCommand": {
+        "type": "text",
+        "label": "Toggle skill randomize command",
+        "value": "!toggleskill",
+        "group": "Commands"
+    },
+    "startInvertionCommand": {
+        "type": "text",
+        "label": "Start invert command",
+        "value": "!startinvert",
+        "group": "Commands"
+    },
+    "showControlShuffleCommand": {
+        "type": "text",
+        "label": "Show widget command",
+        "value": "!showgenshinshuffle",
+        "group": "Commands"
+    },
+    "hideControlShuffleCommand": {
+        "type": "text",
+        "label": "Hide widget command",
+        "value": "!hidegenshinshuffle",
+        "group": "Commands"
+    },
+    "fontFamily": {
+        "group": "Typography",
+        "type": "googleFont",
+        "label": "Font family",
+        "value": "Montserrat"
+    },
+    "keyFontSize": {
+        "type": "number",
+        "label": "Key Font size",
+        "value": 30,
+        "group": "Typography"
+    },
+    "functionFontSize": {
+        "type": "number",
+        "label": "Function Font size",
+        "value": 16,
+        "group": "Typography"
+    },
+    "fontWeight": {
+        "label": "Font Weight",
+        "type": "dropdown",
+        "value": "900",
+        "options": {
+            "100": "Thin (100)",
+            "300": "Light (300)",
+            "400": "Regular (400)",
+            "500": "Medium (500)",
+            "700": "Bold (700)",
+            "900": "Black (900)"
+        },
+        "group": "Typography"
+    }
+}
