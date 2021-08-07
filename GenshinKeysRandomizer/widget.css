@@ -38,9 +38,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #FFF;
-    border: 2px solid #000;
     border-radius: 15px;
+
+    border: 5px solid {{directionsBorderColor}};
+    background-color: {{keyBackgroundColor}};
+    color: {{directionsFontColor}};
 }
 
 .keyName {
@@ -55,4 +57,9 @@
     justify-content: flex-end;
     width: 100%;
     font-size: {{functionFontSize}}px;
+}
+
+.abilityKey {
+    border: 5px solid {{abilitiesBorderColor}};
+    color: {{abilitiesFontColor}};
 }

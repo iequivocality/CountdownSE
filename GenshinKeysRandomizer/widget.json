@@ -1,4 +1,34 @@
 {
+    "keyBackgroundColor": {
+        "label": "Key Background Color",
+        "type": "colorpicker",
+        "value": "#FFF",
+        "group": "UI Customization"
+    },
+    "abilitiesFontColor": {
+        "label": "Abilities Font Color",
+        "type": "colorpicker",
+        "value": "#000",
+        "group": "UI Customization"
+    },
+    "directionsFontColor": {
+        "label": "Directions Font Color",
+        "type": "colorpicker",
+        "value": "#000",
+        "group": "UI Customization"
+    },
+    "abilitiesBorderColor": {
+        "label": "Abilities Border Color",
+        "type": "colorpicker",
+        "value": "#000",
+        "group": "UI Customization"
+    },
+    "directionsBorderColor": {
+        "label": "Directions Border Color",
+        "type": "colorpicker",
+        "value": "#000",
+        "group": "UI Customization"
+    },
     "toggleSkillRandomizeCommand": {
         "type": "text",
         "label": "Toggle skill randomize command",
