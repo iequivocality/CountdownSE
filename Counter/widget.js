@@ -1,12 +1,14 @@
 let hideAfter = 60;
-let hidden = true;
+let hidden = false;
 let counter = 0;
 let previousCounter = 0;
 let values = {
   counter, 
   previousCounter
 };
-let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, initialCounterValue, animationDuration;
+let hideAnimation, hideDelay, counterCommand, counterAddCommand, counterSubtractCommmand, counterResetCommand, initialCounterValue, animationDuration,
+  changeCounterAudio, labelType, counterLabel, audioDelay, volumeSlider;
+let enableAudio = false;
 let originAnimationStyle, destinationAnimationStyle;
 
 window.addEventListener('onEventReceived', function (obj) {
@@ -16,7 +18,7 @@ window.addEventListener('onEventReceived', function (obj) {
     let message = data.text.trim().toLowerCase();
     let splitMessage = message.split(' ');
     let command = splitMessage[0];
-    let value = splitMessage[1]
+    let value = splitMessage[1];
     console.log(badges);
   
     if(command === counterCommand) {
@@ -64,6 +66,16 @@ function setCounter(newCounter) {
 function setCounterText (counter) {
   document.querySelector('.newCounter').innerHTML = counter;
   let timeline = anime.timeline();
+  if (enableAudio) {
+    if (audioDelay > 0) {
+      setTimeout(function () {
+        playAudio(changeCounterAudio, volumeSlider);
+      }, audioDelay * 1000);
+    } else {
+      playAudio(changeCounterAudio, volumeSlider);
+    }
+    
+  }
   
   timeline.add({
     targets: '.currentCounter',
@@ -88,6 +100,13 @@ window.addEventListener('onWidgetLoad', function (obj) {
     counterResetCommand = fieldData.counterResetCommand;
     initialCounterValue = fieldData.initialCount;
     animationDuration = fieldData.animationDuration;
+    changeCounterAudio = fieldData.changeCounterAudio;
+    audioDelay = fieldData.audioDelay;
+    volumeSlider = fieldData.volumeSlider;
+    labelType = fieldData.labelType;
+    counterLabel = fieldData.counterLabel;
+    labelImage = fieldData.labelImage;
+
 
     if(hideAnimation === "none") {
     	hidden = false; 
@@ -109,6 +128,14 @@ window.addEventListener('onWidgetLoad', function (obj) {
     else if(hideAnimation === "slideUp") {
       counterContainerElement.style.marginTop = "-500px";
     }
+
+    if (labelType == "showImage") {
+      $('.counter-image').attr('src', labelImage);
+    } else {
+      $('.counter-text').text(counterLabel);
+    }
+
+    enableAudio = fieldData.enableAudio == "yes";
 });
 
 function showCounterIfHidden(counter) {
@@ -173,4 +200,11 @@ function getBadges(badges) {
   return badges.map(function(val){
     return val.type;
   }) 
+}
+
+function playAudio(sound, volume) {
+  let audio = new Audio(sound);
+  audio.volume = volume * .01;
+  audio.play();
+  return audio.duration;
 }

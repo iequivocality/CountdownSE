@@ -113,5 +113,46 @@
       "label": "Reset counter command",
       "value": "!counterreset",
       "group": "Customization"
+    },
+    "changeCounterAudio": {
+      "type": "sound-input",
+      "label": "Counter Audio",
+      "group": "Audio"
+    },
+    "enableAudio": {
+      "type": "dropdown",
+      "label": "Enable Audio",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Audio"
+    },
+    "audioDelay" : {
+      "type": "number",
+      "label": "Delay before playing audio (in secs)",
+      "value": 0,
+      "group": "Audio"
+    },
+    "volumeSlider": {
+      "type": "slider",
+      "label": "Default Sound Volume",
+      "value": 50,
+      "min": 0,
+      "max": 100,
+      "steps": 1,
+      "group":"Audio"
+    },
+    "labelImage": {
+      "type": "image-input",
+      "label": "Image for label section",
+      "group": "Image"
+    },
+    "imageHeight" : {
+      "type": "number",
+      "label": "Image Height",
+      "value": 60,
+      "group": "Image"
     }
   }
