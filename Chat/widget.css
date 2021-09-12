@@ -1,0 +1,87 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
+@import url('https://fonts.googleapis.com/css2?family={{fontName}}:wght@{{messageFontWeight}};{{titleFontWeight}}');
+
+* {
+    font-family: '{{fontName}}', sans-serif;
+    color: {{fontColor}};
+    overflow: hidden;
+  	text-align: left;
+  	scroll-behavior: smooth;
+}
+
+.main-container {
+    display: flex;
+    height: 98%;
+    flex-direction: column;
+    justify-content: flex-end;
+  	text-align: left;
+}
+
+.message-row {
+    flex: 0 0 auto;
+    height: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-box {
+    display: flex;
+    align-items: flex-start;
+    height: {{fontSize}}px;
+    margin-bottom: 4px;
+}
+
+.user-name {
+    text-transform: uppercase;
+    font-size: {{titleFontSize}}px;
+    font-weight: {{titleFontWeight}};
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.user-badges {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.moderator {
+    color: #FFF;
+    background-color: #6ab04c;
+}
+
+.broadcaster {
+    color: #FFF;
+    background-color: #eb4d4b;
+}
+
+.vip {
+    color: #FFF;
+    background-color: #e056fd;
+}
+
+.user-message {
+    font-weight: {{messageFontWeight}};
+    font-size: {{messageFontSize}}px;
+}
+
+.badge {
+    display: {{badgesVisibility}};
+    height: {{titleFontSize}}px;
+    margin-left: 3px;
+}
+
+.emote {
+    height: {{emoteSize}}px;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+}
+
+.action{
+    font-style: italic;
+}
