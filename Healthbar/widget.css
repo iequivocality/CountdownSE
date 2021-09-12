@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family={{fontFamily}}:wght@{{fontWeight}}&display=swap');
+
+* {
+    font-family: {{fontFamily}}, sans-serif;
+    font-size: {{eventFontSize}}px;
+    color: {{fontColor}};
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 95%;
+    margin: auto;
+}
+
+.healthbar-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: {{backgroundColor}};
+}
+
+.label-container {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: {{hpFontSize}}px;
+}
+
+.number-health {
+    font-size: {{hpFontSize}}px;
+}
+
+.healthbar {
+    position: relative;
+    overflow: hidden;
+    width: 75%;
+    background-color: {{barBackgroundColor}}; 
+    border-radius: 5px;
+    margin: 4px 0px;
+
+    height: {{barThickness}}px;
+}
+
+@keyframes loopCritical {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+  }
+
+.critical-healthbar {
+    animation-duration: 0.75s;
+    animation-name: loopCritical;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.remaining-health {
+    position: absolute;
+    transition: background-color 1s;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    background-color: {{stableHealth}};
+}
+
+.beyond-health {
+    background-color: {{beyondHealth}};
+}
+
+.stable-health {
+    background-color: {{stableHealth}};
+}
+
+.moderate-health {
+    background-color: {{moderateHealth}};
+}
+
+.critical-health {
+    background-color: {{criticalHealth}};
+}
+
+.events {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    padding: 2px;
+    height: {{eventFontSize}}px;
+}
+
+@keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+
+.events-marquee {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 200%;
+    height: 100%;
+    position: absolute;
+    animation: marquee 10s linear infinite;
+}
+
+.events-marquee span {
+    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 75%;
+    flex-wrap: nowrap;
+}
